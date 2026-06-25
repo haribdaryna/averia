@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Хроніки Аверії — Кована в Льоду</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0d0f;
+    --bg2: #13131a;
+    --bg3: #1a1a24;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #e8e6e0;
+    --text2: #8a8680;
+    --text3: #5a5650;
+    --accent: #7f77dd;
+    --accent2: #534AB7;
+    --fire: #c0622a;
+    --ice: #3a7bbd;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 30% 50%, rgba(127,119,221,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 70% 50%, rgba(58,123,189,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-rune {
+    font-family: var(--serif);
+    font-size: 13px;
+    letter-spacing: 6px;
+    color: var(--text3);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 500;
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+  }
+
+  .hero-subtitle {
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text2);
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-line {
+    width: 60px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    margin: 0 auto 2.5rem;
+  }
+
+  .hero-badges {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    justify-content: center; margin-bottom: 3rem;
+  }
+
+  .badge {
+    font-size: 11px; letter-spacing: 1.5px; padding: 5px 14px;
+    border: 0.5px solid var(--border2); border-radius: 20px;
+    color: var(--text2); background: rgba(255,255,255,0.03);
+  }
+
+  .hero-scroll {
+    font-size: 12px; letter-spacing: 3px; color: var(--text3);
+    text-decoration: none; text-transform: uppercase;
+    display: flex; align-items: center; gap: 8px;
+    transition: color 0.2s;
+  }
+  .hero-scroll:hover { color: var(--text2); }
+  .hero-scroll::after { content: '↓'; font-size: 14px; }
+
+  /* COVER IMAGE */
+  .cover-section {
+    padding: 4rem 2rem;
+    max-width: 900px; margin: 0 auto; text-align: center;
+  }
+
+  .cover-placeholder {
+    width: 100%; max-width: 400px; margin: 0 auto;
+    aspect-ratio: 2/3;
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 12px;
+    background: var(--bg2);
+    color: var(--text3); font-size: 13px;
+    position: relative; overflow: hidden;
+  }
+
+  .cover-placeholder::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(127,119,221,0.06) 0%, transparent 70%);
+  }
+
+  .cover-placeholder .icon { font-size: 32px; opacity: 0.3; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(13,13,15,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .nav-inner {
+    max-width: 900px; margin: 0 auto;
+    display: flex; overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+
+  .nav-btn {
+    padding: 14px 22px; font-size: 13px; font-weight: 400;
+    color: var(--text3); background: none; border: none;
+    cursor: pointer; white-space: nowrap;
+    border-bottom: 1px solid transparent;
+    letter-spacing: 0.5px;
+    transition: color 0.2s, border-color 0.2s;
+    font-family: var(--sans);
+  }
+  .nav-btn:hover { color: var(--text2); }
+  .nav-btn.active { color: var(--text); border-bottom-color: var(--accent); }
+
+  /* CONTENT */
+  .content { max-width: 900px; margin: 0 auto; padding: 0 2rem 6rem; }
+
+  .section { display: none; padding-top: 4rem; }
+  .section.active { display: block; }
+
+  .section-eyebrow {
+    font-size: 11px; letter-spacing: 4px; color: var(--text3);
+    text-transform: uppercase; margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    font-weight: 500; color: var(--text);
+    line-height: 1.2; margin-bottom: 1.5rem;
+  }
+
+  h3 {
+    font-family: var(--serif);
+    font-size: 1.3rem; font-weight: 500;
+    color: var(--text); margin-bottom: 0.75rem; margin-top: 2rem;
+  }
+
+  p, .muted {
+    font-size: 15px; color: var(--text2);
+    line-height: 1.8; margin-bottom: 1rem;
+  }
+
+  .divider {
+    height: 1px; background: var(--border);
+    margin: 3rem 0;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 6px; padding: 1.25rem 1.5rem;
+  }
+
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 1.5rem; }
+  .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
+
+  .act-eyebrow { font-size: 11px; letter-spacing: 2px; color: var(--text3); margin-bottom: 6px; }
+  .act-name { font-family: var(--serif); font-size: 1.2rem; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .act-sub { font-size: 12px; color: var(--text3); }
+
+  .trope-pill {
+    padding: 7px 14px; border-radius: 20px;
+    border: 0.5px solid var(--border2);
+    font-size: 12px; color: var(--text2); text-align: center;
+    background: rgba(255,255,255,0.02);
+  }
+
+  /* CHAPTERS */
+  .chapters-list { display: grid; gap: 2px; }
+  .chapter-item {
+    display: flex; align-items: center; gap: 16px;
+    padding: 14px 16px; border-radius: 4px;
+    border: 0.5px solid transparent;
+    cursor: default; transition: background 0.15s, border-color 0.15s;
+  }
+  .chapter-item:hover { background: var(--bg2); border-color: var(--border); }
+  .chapter-num {
+    font-family: var(--serif); font-size: 13px;
+    color: var(--text3); min-width: 28px;
+  }
+  .chapter-title { font-size: 14px; color: var(--text); flex: 1; }
+  .chapter-act {
+    font-size: 11px; color: var(--text3); letter-spacing: 1px;
+    padding: 3px 8px; border-radius: 10px;
+    border: 0.5px solid var(--border);
+  }
+  .chapter-soon { font-size: 11px; color: var(--text3); font-style: italic; }
+
+  /* CHARACTERS */
+  .char-card {
+    background: var(--bg2); border: 0.5px solid var(--border);
+    border-radius: 6px; overflow: hidden; margin-bottom: 8px;
+  }
+  .char-header {
+    display: flex; align-items: center; gap: 16px;
+    padding: 1rem 1.25rem; cursor: pointer;
+    transition: background 0.15s;
+  }
+  .char-header:hover { background: var(--bg3); }
+  .char-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 16px; flex-shrink: 0;
+    border: 0.5px solid var(--border2);
+  }
+  .char-name { font-family: var(--serif); font-size: 1.1rem; color: var(--text); }
+  .char-role { font-size: 12px; color: var(--text3); margin-top: 2px; }
+  .char-toggle { margin-left: auto; color: var(--text3); font-size: 18px; transition: transform 0.2s; }
+  .char-toggle.open { transform: rotate(180deg); }
+  .char-body { display: none; padding: 1rem 1.25rem; border-top: 0.5px solid var(--border); }
+  .char-body.open { display: block; }
+  .char-row { display: flex; gap: 12px; margin-bottom: 10px; font-size: 14px; }
+  .char-key { color: var(--text3); min-width: 110px; flex-shrink: 0; font-size: 12px; letter-spacing: 0.5px; padding-top: 2px; }
+  .char-val { color: var(--text2); line-height: 1.6; }
+
+  /* MAGIC */
+  .magic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 1.25rem; }
+  .magic-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: 6px; padding: 1.25rem; }
+  .magic-glyph { font-size: 28px; margin-bottom: 12px; }
+  .magic-name { font-family: var(--serif); font-size: 1.2rem; color: var(--text); margin-bottom: 3px; }
+  .magic-holder { font-size: 12px; color: var(--text3); margin-bottom: 14px; letter-spacing: 0.5px; }
+  .magic-row { font-size: 13px; color: var(--text2); margin-bottom: 8px; line-height: 1.6; }
+  .magic-row strong { color: var(--text3); font-weight: 400; font-size: 11px; letter-spacing: 1px; display: block; margin-bottom: 2px; }
+
+  .resonance-card {
+    background: var(--bg2); border: 0.5px solid var(--accent2);
+    border-radius: 6px; padding: 1.5rem;
+    position: relative; overflow: hidden;
+  }
+  .resonance-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+  .resonance-title { font-family: var(--serif); font-size: 1.2rem; color: var(--text); margin-bottom: 8px; }
+
+  /* WORLD */
+  .region-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: 6px; padding: 1.25rem; }
+  .region-dir { font-size: 11px; letter-spacing: 3px; color: var(--text3); margin-bottom: 6px; text-transform: uppercase; }
+  .region-name { font-family: var(--serif); font-size: 1.1rem; color: var(--text); margin-bottom: 6px; }
+  .region-races { font-size: 12px; color: var(--text3); margin-bottom: 10px; line-height: 1.6; }
+  .city-tag {
+    display: inline-block; font-size: 10px; padding: 2px 8px;
+    border-radius: 10px; border: 0.5px solid var(--border2);
+    color: var(--text3); margin: 2px 2px 0 0; letter-spacing: 0.5px;
+  }
+
+  .citadel-level {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 12px 16px; border-radius: 4px;
+    background: var(--bg2); border: 0.5px solid var(--border);
+    margin-bottom: 6px;
+  }
+  .level-icon { font-size: 15px; min-width: 20px; margin-top: 1px; }
+  .level-name { font-size: 14px; color: var(--text); font-weight: 500; margin-bottom: 2px; }
+  .level-desc { font-size: 12px; color: var(--text3); }
+
+  /* ART GALLERY */
+  .gallery-placeholder {
+    border: 1px dashed var(--border2); border-radius: 6px;
+    padding: 3rem 2rem; text-align: center;
+    color: var(--text3); font-size: 14px; line-height: 1.8;
+  }
+  .gallery-placeholder .big { font-family: var(--serif); font-size: 2rem; color: var(--border2); margin-bottom: 1rem; display: block; }
+
+  /* FOOTER */
+  footer {
+    border-top: 0.5px solid var(--border);
+    padding: 2rem; text-align: center;
+    font-size: 12px; color: var(--text3); letter-spacing: 1px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .hero { padding: 3rem 1.25rem; }
+    .content { padding: 0 1.25rem 4rem; }
+    .char-key { min-width: 80px; }
+    .chapter-item { flex-wrap: wrap; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-rune">Dark Industrial Romantasy · Біопанк-Фентезі</div>
+  <h1 class="hero-title">Хроніки Аверії</h1>
+  <p class="hero-subtitle">Кована в Льоду</p>
+  <div class="hero-line"></div>
+  <div class="hero-badges">
+    <span class="badge">36 глав + Епілог</span>
+    <span class="badge">18+ Strictly Mature</span>
+    <span class="badge">80 000–90 000 слів</span>
+    <span class="badge">Українська</span>
+  </div>
+  <a href="#main" class="hero-scroll">Досліджувати</a>
+</section>
+
+<nav id="main">
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="showSection('about', this)">Про книгу</button>
+    <button class="nav-btn" onclick="showSection('chapters', this)">Глави</button>
+    <button class="nav-btn" onclick="showSection('characters', this)">Персонажі</button>
+    <button class="nav-btn" onclick="showSection('magic', this)">Магія</button>
+    <button class="nav-btn" onclick="showSection('world', this)">Світ</button>
+    <button class="nav-btn" onclick="showSection('art', this)">Арти</button>
+  </div>
+</nav>
+
+<div class="content">
+
+  <!-- ABOUT -->
+  <div id="about" class="section active">
+    <div class="section-eyebrow">Структура</div>
+    <h2>Три акти</h2>
+    <div class="grid2">
+      <div class="card">
+        <div class="act-eyebrow">Акт I</div>
+        <div class="act-name">Попіл і Сталь</div>
+        <div class="act-sub">Глави 1–10 · Виживання та Угода</div>
+      </div>
+      <div class="card">
+        <div class="act-eyebrow">Акт II</div>
+        <div class="act-name">Тягар Правди</div>
+        <div class="act-sub">Глави 11–22 · Злам і Шлюб</div>
+      </div>
+      <div class="card">
+        <div class="act-eyebrow">Акт III</div>
+        <div class="act-name">Війна Іржі</div>
+        <div class="act-sub">Глави 23–36 · Кульмінація</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-eyebrow">Тропи</div>
+    <h2>Чого чекати</h2>
+    <div class="grid3">
+      <div class="trope-pill">Enemies to Lovers</div>
+      <div class="trope-pill">Arranged Marriage</div>
+      <div class="trope-pill">Competence Porn</div>
+      <div class="trope-pill">Touch Her and Die</div>
+      <div class="trope-pill">Forced Proximity</div>
+      <div class="trope-pill">Slow Burn</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-eyebrow">Атмосфера</div>
+    <h2>Сніг. Сажа. Кров. Сталь.</h2>
+    <p>Промисловий фентезійний світ де магія фізична і жорстока, а кожне її використання коштує тілу. Північ пахне сіркою, вугіллям і залізом. Тут куються мечі і долі.</p>
+    <p>Кохання народжується між ворогами — через повагу до сили і майстерності, а не попри них. Slow Burn до останнього: перша сцена 18+ лише у другій половині книги.</p>
+  </div>
+
+  <!-- CHAPTERS -->
+  <div id="chapters" class="section">
+    <div class="section-eyebrow">Зміст</div>
+    <h2>Глави</h2>
+    <p class="muted" style="margin-bottom:2rem;">Глави з'являтимуться тут по мірі написання. Без спойлерів — лише назви.</p>
+    <div class="chapters-list">
+      <div class="chapter-item">
+        <span class="chapter-num">01</span>
+        <span class="chapter-title">Механічна Ворона</span>
+        <span class="chapter-act">Акт I</span>
+      </div>
+      <div class="chapter-item">
+        <span class="chapter-num">02</span>
+        <span class="chapter-title">Вовча Паща</span>
+        <span class="chapter-act">Акт I</span>
+      </div>
+      <div class="chapter-item">
+        <span class="chapter-num">03</span>
+        <span class="chapter-title" style="color:var(--text3);">— незабаром —</span>
+        <span class="chapter-soon">в процесі</span>
+      </div>
+      <div class="chapter-item">
+        <span class="chapter-num">04–36</span>
+        <span class="chapter-title" style="color:var(--text3);">— незабаром —</span>
+        <span class="chapter-soon">в процесі</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHARACTERS -->
+  <div id="characters" class="section">
+    <div class="section-eyebrow">Дійові особи</div>
+    <h2>Персонажі</h2>
+
+    <div class="char-card">
+      <div class="char-header" onclick="toggleChar(this)">
+        <div class="char-avatar" style="background:rgba(127,119,221,0.12);color:#7f77dd;">Р</div>
+        <div>
+          <div class="char-name">Рея</div>
+          <div class="char-role">Головна героїня · Пантера · Коваль</div>
+        </div>
+        <div class="char-toggle">↓</div>
+      </div>
+      <div class="char-body">
+        <div class="char-row"><div class="char-key">Зовнішність</div><div class="char-val">Платиновий блонд з графітовими пасмами — наче в золото вплели сталь. Холодні сірі очі. Тіло гімнастки — гнучке, для швидкості.</div></div>
+        <div class="char-row"><div class="char-key">Характер</div><div class="char-val">Зовні цинічна і зухвала, сарказм як щит. Контроль відчуває лише в кузні або в бою. Провокує, кусається, вередує.</div></div>
+        <div class="char-row"><div class="char-key">Магія</div><div class="char-val">Жар Крові — металокінез. Розмовляє з металом зсередини.</div></div>
+      </div>
+    </div>
+
+    <div class="char-card">
+      <div class="char-header" onclick="toggleChar(this)">
+        <div class="char-avatar" style="background:rgba(58,123,189,0.12);color:#3a7bbd;">А</div>
+        <div>
+          <div class="char-name">Арктур Валеріус</div>
+          <div class="char-role">Головний герой · Чорний Ведмідь · Лорд-Вартовий</div>
+        </div>
+        <div class="char-toggle">↓</div>
+      </div>
+      <div class="char-body">
+        <div class="char-row"><div class="char-key">Зовнішність</div><div class="char-val">Масивне тіло-скеля. Темне волосся з коричневими і золотими пасмами. Янтарні очі кольору меду.</div></div>
+        <div class="char-row"><div class="char-key">Характер</div><div class="char-val">Стоїк. Несе тягар відповідальності за цілий народ. Спокійний, терплячий, домінуючий.</div></div>
+        <div class="char-row"><div class="char-key">Магія</div><div class="char-val">Гравітація — притискає, утримує, руйнує. Земля і Непорушність.</div></div>
+      </div>
+    </div>
+
+    <div class="char-card">
+      <div class="char-header" onclick="toggleChar(this)">
+        <div class="char-avatar" style="background:rgba(255,255,255,0.04);color:#8a8680;">Ф</div>
+        <div>
+          <div class="char-name">Фенрік</div>
+          <div class="char-role">Полярний Вовк · Командир розвідки</div>
+        </div>
+        <div class="char-toggle">↓</div>
+      </div>
+      <div class="char-body">
+        <div class="char-row"><div class="char-key">Зовнішність</div><div class="char-val">Сріблясте волосся. Рваний шрам через усе обличчя. Ліве око молочно-біле — бачить магічні аури.</div></div>
+        <div class="char-row"><div class="char-key">Характер</div><div class="char-val">Жартівливий, вірний, безрозсудний. Прагматик з великою кількістю лайки.</div></div>
+      </div>
+    </div>
+
+    <div class="char-card">
+      <div class="char-header" onclick="toggleChar(this)">
+        <div class="char-avatar" style="background:rgba(192,98,42,0.12);color:#c0622a;">К</div>
+        <div>
+          <div class="char-name">Кай</div>
+          <div class="char-role">Ягуар · Дипломат · Серце історії</div>
+        </div>
+        <div class="char-toggle">↓</div>
+      </div>
+      <div class="char-body">
+        <div class="char-row"><div class="char-key">Зовнішність</div><div class="char-val">Темне волосся, теплі карі очі, бліда шкіра.</div></div>
+        <div class="char-row"><div class="char-key">Характер</div><div class="char-val">Емпат, пацифіст, інтелектуал. М'який і добрий — голос розуму там де Рея є зброя.</div></div>
+        <div class="char-row"><div class="char-key">Магія</div><div class="char-val">Емпатія — відчуває і поглинає чужий біль.</div></div>
+      </div>
+    </div>
+
+    <div class="char-card">
+      <div class="char-header" onclick="toggleChar(this)">
+        <div class="char-avatar" style="background:rgba(255,255,255,0.04);color:#5a5650;">В</div>
+        <div>
+          <div class="char-name">Веспер</div>
+          <div class="char-role">Жінка-Ворон · Інформатор</div>
+        </div>
+        <div class="char-toggle">↓</div>
+      </div>
+      <div class="char-body">
+        <div class="char-row"><div class="char-key">Зовнішність</div><div class="char-val">Висока, дуже худа, гострі пташині риси. Чорне вбрання з пір'ям. Рухи рвучкі.</div></div>
+        <div class="char-row"><div class="char-key">Характер</div><div class="char-val">Лояльна виключно золоту та цікавим історіям.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAGIC -->
+  <div id="magic" class="section">
+    <div class="section-eyebrow">Система</div>
+    <h2>Магія Аверії</h2>
+    <p class="muted">Магія фізична як кров — не безкінечний ресурс. Кожне використання має ціну для тіла.</p>
+
+    <div class="magic-grid">
+      <div class="magic-card">
+        <div class="magic-glyph">🔥</div>
+        <div class="magic-name">Жар Крові</div>
+        <div class="magic-holder">Рея · Металокінез / Голос Сталі</div>
+        <div class="magic-row"><strong>Як працює</strong>Проникає всередину металу і змушує атоми вібрувати. Вона «вмовляє» метал, а не ламає.</div>
+        <div class="magic-row"><strong>Унікальність</strong>Єдина хто може кувати Зоряну Кров — метеоритну сталь що реагує лише на живий вогонь.</div>
+      </div>
+      <div class="magic-card">
+        <div class="magic-glyph">🪨</div>
+        <div class="magic-name">Гравітація</div>
+        <div class="magic-holder">Арктур · Земля / Непорушність</div>
+        <div class="magic-row"><strong>Як працює</strong>Гравітаційне поле — притискає ворогів, створює ударні хвилі, змінює тиск у просторі.</div>
+        <div class="magic-row"><strong>Масштаб</strong>Від точкового контролю до Абсолютної Гравітації — останнього резерву.</div>
+      </div>
+    </div>
+
+    <div class="resonance-card">
+      <div class="resonance-title">Резонанс</div>
+      <p class="muted" style="margin:0;">Коли дві протилежні магії — Вогонь і Гравітація — зустрічаються, вони не знищують одна одну. Вони резонують. Це унікальне явище, якого не існувало до зустрічі Реї і Арктура.</p>
+    </div>
+
+    <h3>Іржа</h3>
+    <p class="muted">Штучний вірус що перетворює носія на монстра. Чорні вени, некроз, втрата розуму. Головна загроза світу Аверії.</p>
+  </div>
+
+  <!-- WORLD -->
+  <div id="world" class="section">
+    <div class="section-eyebrow">Географія</div>
+    <h2>Чотири сторони Аверії</h2>
+    <div class="grid2" style="margin-bottom:2rem;">
+      <div class="region-card">
+        <div class="region-dir">Північ</div>
+        <div class="region-name">Залізний Бастіон</div>
+        <div class="region-races">Ведмеді · Вовки · Кабани</div>
+        <span class="city-tag">Скальсгард</span>
+        <span class="city-tag">Горн</span>
+        <span class="city-tag">Тангард</span>
+      </div>
+      <div class="region-card">
+        <div class="region-dir">Південь</div>
+        <div class="region-name">Смарагдовий Домініон</div>
+        <div class="region-races">Пантери · Леви · Рисі</div>
+        <span class="city-tag">Велір</span>
+        <span class="city-tag">Сейбл</span>
+        <span class="city-tag">Місячна Чаша</span>
+      </div>
+      <div class="region-card">
+        <div class="region-dir">Захід</div>
+        <div class="region-name">Безодня</div>
+        <div class="region-races">Акули · Восьминоги · Кракени</div>
+        <span class="city-tag">Біссос</span>
+        <span class="city-tag">Риф</span>
+      </div>
+      <div class="region-card">
+        <div class="region-dir">Схід</div>
+        <div class="region-name">Високе Небо</div>
+        <div class="region-races">Орли · Яструби · Ворони</div>
+        <span class="city-tag">Зеніт</span>
+        <span class="city-tag">Ехо</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-eyebrow">Локація</div>
+    <h2>Скальсгард — Цитадель Кісток</h2>
+    <p class="muted" style="margin-bottom:1.5rem;">Місто-завод висічене в чорному серці гори. Будинки-сталактити, ланцюгові мости, акведуки з розплавленим металом. Вічні сутінки. Гуркіт молотів і скрегіт підйомників. Запах сірки, вугілля і сталі.</p>
+    <div>
+      <div class="citadel-level"><div class="level-icon">🔴</div><div><div class="level-name">Яма</div><div class="level-desc">Плавильня. Найнижчий рівень. Пекло і спека.</div></div></div>
+      <div class="citadel-level"><div class="level-icon">⚫</div><div><div class="level-name">Безодня</div><div class="level-desc">В'язниця. Антимагічні плити. Вакуумна тиша.</div></div></div>
+      <div class="citadel-level"><div class="level-icon">🔥</div><div><div class="level-name">Королівська Кузня</div><div class="level-desc">Майстри зброярі. Тут працює Рея.</div></div></div>
+      <div class="citadel-level"><div class="level-icon">🏠</div><div><div class="level-name">Житловий рівень</div><div class="level-desc">Гвардія, слуги, цілителі.</div></div></div>
+      <div class="citadel-level"><div class="level-icon">👑</div><div><div class="level-name">Резиденція Лорда</div><div class="level-desc">Покої Арктура, бібліотека, зала Ради.</div></div></div>
+      <div class="citadel-level"><div class="level-icon">🏔</div><div><div class="level-name">Стіни і Вежі</div><div class="level-desc">Патруль. Вид на Долину Скелетів.</div></div></div>
+    </div>
+  </div>
+
+  <!-- ART -->
+  <div id="art" class="section">
+    <div class="section-eyebrow">Візуали</div>
+    <h2>Арти</h2>
+    <p class="muted" style="margin-bottom:2rem;">Ілюстрації персонажів і локацій з'являтимуться тут.</p>
+    <div class="gallery-placeholder">
+      <span class="big">✦</span>
+      Арти ще в процесі створення.<br>
+      Скоро тут буде Рея, Арктур і Скальсгард.
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Хроніки Аверії · Кована в Льоду · 18+ · © всі права захищено
+</footer>
+
+<script>
+function showSection(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  document.getElementById('main').scrollIntoView({ behavior: 'smooth' });
+}
+function toggleChar(header) {
+  const body = header.nextElementSibling;
+  const toggle = header.querySelector('.char-toggle');
+  body.classList.toggle('open');
+  toggle.classList.toggle('open');
+}
+</script>
+</body>
+</html>
