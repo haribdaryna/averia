@@ -329,12 +329,13 @@
 
   /* CHAR IMAGE */
   .char-img {
-    width: 100%; max-height: 340px; object-fit: cover;
+    width: 100%; max-height: 400px; object-fit: cover;
+    object-position: center 20%;
     border-radius: 4px; margin-bottom: 1.25rem;
     display: block;
   }
-  .char-img[src="rey.png"]:not([complete]),
-  .char-img[src=""]:not([complete]) { display: none; }
+  .char-img.pos-top { object-position: center top; }
+  .char-img.pos-center { object-position: center center; }
 
   /* ART GALLERY */
   .gallery-placeholder {
@@ -481,7 +482,7 @@
         <div class="char-toggle">↓</div>
       </div>
       <div class="char-body">
-        <img src="rey.png" class="char-img" alt="Рея">
+        <img src="rey.png" class="char-img pos-top" alt="Рея">
         <div class="char-row"><div class="char-key">Зовнішність</div><div class="char-val">Платиновий блонд з графітовими пасмами — наче в золото вплели сталь. Холодні сірі очі. Тіло гімнастки — гнучке, для швидкості.</div></div>
         <div class="char-row"><div class="char-key">Характер</div><div class="char-val">Зовні цинічна і зухвала, сарказм як щит. Контроль відчуває лише в кузні або в бою. Провокує, кусається, вередує.</div></div>
         <div class="char-row"><div class="char-key">Магія</div><div class="char-val">Жар Крові — металокінез. Розмовляє з металом зсередини.</div></div>
@@ -498,7 +499,7 @@
         <div class="char-toggle">↓</div>
       </div>
       <div class="char-body">
-        <img src="arctur.png" class="char-img" alt="Арктур">
+        <img src="arctur.png" class="char-img pos-center" alt="Арктур">
         <div class="char-row"><div class="char-key">Зовнішність</div><div class="char-val">Масивне тіло-скеля. Темне волосся з коричневими і золотими пасмами. Янтарні очі кольору меду.</div></div>
         <div class="char-row"><div class="char-key">Характер</div><div class="char-val">Стоїк. Несе тягар відповідальності за цілий народ. Спокійний, терплячий, домінуючий.</div></div>
         <div class="char-row"><div class="char-key">Магія</div><div class="char-val">Гравітація — притискає, утримує, руйнує. Земля і Непорушність.</div></div>
@@ -515,7 +516,7 @@
         <div class="char-toggle">↓</div>
       </div>
       <div class="char-body">
-        <img src="fenrik.png" class="char-img" alt="Фенрік">
+        <img src="fenrik.png" class="char-img pos-top" alt="Фенрік">
         <div class="char-row"><div class="char-key">Зовнішність</div><div class="char-val">Сріблясте волосся. Рваний шрам через усе обличчя. Ліве око молочно-біле — бачить магічні аури.</div></div>
         <div class="char-row"><div class="char-key">Характер</div><div class="char-val">Жартівливий, вірний, безрозсудний. Прагматик з великою кількістю лайки.</div></div>
       </div>
@@ -547,7 +548,7 @@
         <div class="char-toggle">↓</div>
       </div>
       <div class="char-body">
-        <img src="vesper.png" class="char-img" alt="Веспер">
+        <img src="vesper.png" class="char-img pos-top" alt="Веспер">
         <div class="char-row"><div class="char-key">Зовнішність</div><div class="char-val">Висока, дуже худа, гострі пташині риси. Чорне вбрання з пір'ям. Рухи рвучкі.</div></div>
         <div class="char-row"><div class="char-key">Характер</div><div class="char-val">Лояльна виключно золоту та цікавим історіям.</div></div>
       </div>
@@ -563,9 +564,10 @@
         <div class="char-toggle">↓</div>
       </div>
       <div class="char-body">
-        <img src="gunnar.png" class="char-img" alt="Гуннар">
-        <div class="char-row"><div class="char-key">Зовнішність</div><div class="char-val">Масивний, темний. Шрами від власних експериментів. Погляд фанатика — абсолютно впевненого у своїй правоті.</div></div>
-        <div class="char-row"><div class="char-key">Характер</div><div class="char-val">Ідеолог чистоти крові. Холодний, методичний, переконаний що мета виправдовує все. Небезпечний не силою, а інтелектом.</div></div>
+        <img src="gunnar.png" class="char-img pos-top" alt="Гуннар">
+        <div class="char-row"><div class="char-key">Титул</div><div class="char-val">Голова Ради Іклів · Головний Алхімік Цитаделі</div></div>
+        <div class="char-row"><div class="char-key">Зовнішність</div><div class="char-val">Високий, сухорлявий — нетипово для ведмедів. Ідеально пряме довге біле волосся, бліда шкіра, світло-блакитні очі — майже прозорі, як крига. Завжди в білому або сріблі. Тонкі білі шкіряні рукавички — щоб не бруднити руки.</div></div>
+        <div class="char-row"><div class="char-key">Характер</div><div class="char-val">Абсолютна, моторошна чистота в задимленому світі Цитаделі. Холодний, методичний ідеолог. Небезпечний не силою, а інтелектом і переконаністю у своїй правоті.</div></div>
       </div>
     </div>
   </div>
