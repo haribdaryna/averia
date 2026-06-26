@@ -338,6 +338,36 @@
   .char-img.pos-center { object-position: center center; }
 
   /* ART GALLERY */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+    margin-bottom: 1rem;
+  }
+  .gallery-item {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .gallery-item--wide {
+    grid-column: span 2;
+  }
+  @media (max-width: 600px) {
+    .gallery-item--wide { grid-column: span 1; }
+  }
+  .gallery-img {
+    width: 100%; height: 240px;
+    object-fit: cover; object-position: center top;
+    display: block;
+  }
+  .gallery-item--wide .gallery-img { height: 280px; object-position: center center; }
+  .gallery-caption {
+    padding: 10px 14px;
+    border-top: 0.5px solid var(--border);
+  }
+  .gallery-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+  .gallery-sub { font-size: 12px; color: var(--text3); }
   .gallery-placeholder {
     border: 1px dashed var(--border2); border-radius: 6px;
     padding: 3rem 2rem; text-align: center;
@@ -665,12 +695,85 @@
   <!-- ART -->
   <div id="art" class="section">
     <div class="section-eyebrow">Візуали</div>
-    <h2>Арти</h2>
-    <p class="muted" style="margin-bottom:2rem;">Ілюстрації персонажів і локацій з'являтимуться тут.</p>
-    <div class="gallery-placeholder">
-      <span class="big">✦</span>
-      Арти ще в процесі створення.<br>
-      Скоро тут буде Рея, Арктур і Скальсгард.
+    <h2>Персонажі</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="arctur2.png" alt="Арктур" class="gallery-img">
+        <div class="gallery-caption">
+          <div class="gallery-title">Арктур Валеріус</div>
+          <div class="gallery-sub">Лорд-Вартовий · рука що кам'яніє</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="rey_late.png" alt="Рея" class="gallery-img">
+        <div class="gallery-caption">
+          <div class="gallery-title">Рея</div>
+          <div class="gallery-sub">Пізній образ · після Чорного Весілля</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="rey_seybl.png" alt="Рея в Сейблі" class="gallery-img">
+        <div class="gallery-caption">
+          <div class="gallery-title">Рея</div>
+          <div class="gallery-sub">Порт Сейбла · втеча на Північ</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="rey_forge.png" alt="Рея кує меч" class="gallery-img">
+        <div class="gallery-caption">
+          <div class="gallery-title">Рея</div>
+          <div class="gallery-sub">Кузня · кує меч для Арктура</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="rey_prison.png" alt="Рея у в'язниці" class="gallery-img">
+        <div class="gallery-caption">
+          <div class="gallery-title">Рея</div>
+          <div class="gallery-sub">Яма · перші дні в Цитаделі</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-eyebrow">Візуали</div>
+    <h2>Локації</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item gallery-item--wide">
+        <img src="skallsgard.png" alt="Скальсгард" class="gallery-img">
+        <div class="gallery-caption">
+          <div class="gallery-title">Скальсгард</div>
+          <div class="gallery-sub">Цитадель Кісток · ланцюги, мости, вогонь</div>
+        </div>
+      </div>
+      <div class="gallery-item gallery-item--wide">
+        <img src="seybl.png" alt="Сейбл" class="gallery-img">
+        <div class="gallery-caption">
+          <div class="gallery-title">Сейбл</div>
+          <div class="gallery-sub">Портове місто Півдня · димарі і річка</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="zastava.png" alt="Застава" class="gallery-img">
+        <div class="gallery-caption">
+          <div class="gallery-title">Перед заставою</div>
+          <div class="gallery-sub">Рея на підході до Залізного Бастіону</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="forge_interior.png" alt="Кузня" class="gallery-img">
+        <div class="gallery-caption">
+          <div class="gallery-title">Королівська Кузня</div>
+          <div class="gallery-sub">Рея за роботою · серце Цитаделі</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="forge_empty.png" alt="Кузня Реї" class="gallery-img">
+        <div class="gallery-caption">
+          <div class="gallery-title">Кузня Реї</div>
+          <div class="gallery-sub">Ковадло, мечі, кров на підлозі</div>
+        </div>
+      </div>
     </div>
   </div>
 
